@@ -1,0 +1,130 @@
+---
+import Layout from '../layouts/Layout.astro';
+import AIToolCard from '../components/AIToolCard.astro';
+
+const allTools = [
+  {
+    title: "ChatGPT Plus",
+    description: "Advanced AI chatbot with GPT-4 capabilities, offering improved reasoning, creativity, and knowledge.",
+    image: "https://images.unsplash.com/photo-1655720828018-edd2daec9349?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    category: "Chatbot",
+    rating: 4.8,
+    url: "/tools/chatgpt-plus",
+    price: "$20/month"
+  },
+  {
+    title: "Midjourney",
+    description: "AI art generator that creates stunning images from text descriptions with remarkable detail and creativity.",
+    image: "https://images.unsplash.com/photo-1659478930352-1ae1eda7035d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    category: "Image Generation",
+    rating: 4.7,
+    url: "/tools/midjourney",
+    price: "$10-30/month"
+  },
+  {
+    title: "Jasper",
+    description: "AI writing assistant that helps create marketing copy, blog posts, and content with human-like quality.",
+    image: "https://images.unsplash.com/photo-1655720801511-d7f0d1bf7e6e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    category: "Writing",
+    rating: 4.5,
+    url: "/tools/jasper",
+    price: "$49/month"
+  },
+  {
+    title: "Synthesia",
+    description: "Create AI-generated videos with virtual presenters speaking your script in multiple languages.",
+    image: "https://images.unsplash.com/photo-1616469829581-73993eb86b02?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    category: "Video",
+    rating: 4.6,
+    url: "/tools/synthesia",
+    price: "$30/month"
+  },
+  {
+    title: "Stable Diffusion",
+    description: "Open-source image generation model that creates detailed images from text prompts with local deployment options.",
+    image: "https://images.unsplash.com/photo-1675587388693-a1d5f4c3a5e8?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    category: "Image Generation",
+    rating: 4.5,
+    url: "/tools/stable-diffusion",
+    price: "Free/Self-hosted"
+  },
+  {
+    title: "Claude",
+    description: "Anthropic's conversational AI assistant with strong reasoning capabilities and reduced hallucinations.",
+    image: "https://images.unsplash.com/photo-1677442135136-760c813a743d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    category: "Chatbot",
+    rating: 4.6,
+    url: "/tools/claude",
+    price: "Free/Premium"
+  },
+  {
+    title: "Notion AI",
+    description: "AI writing assistant integrated with Notion that helps draft, edit, and summarize content within your workspace.",
+    image: "https://images.unsplash.com/photo-1646617747609-45b466ace9a6?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    category: "Writing",
+    rating: 4.4,
+    url: "/tools/notion-ai",
+    price: "$10/month"
+  },
+  {
+    title: "Runway",
+    description: "AI video editing platform with text-to-video generation, motion tracking, and advanced editing capabilities.",
+    image: "https://images.unsplash.com/photo-1536240478700-b869070f9279?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    category: "Video",
+    rating: 4.5,
+    url: "/tools/runway",
+    price: "$15-35/month"
+  }
+];
+
+const categories = [...new Set(allTools.map(tool => tool.category))];
+---
+
+<Layout title="AI Tools - AINexus">
+  <main>
+    <section class="bg-gradient-to-b from-primary-900 to-primary-800 py-16">
+      <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="max-w-3xl mx-auto text-center">
+          <h1 class="text-4xl font-bold text-white font-display">AI Tools Directory</h1>
+          <p class="mt-4 text-xl text-primary-100">Discover and compare the best AI tools to enhance your productivity and creativity.</p>
+        </div>
+      </div>
+    </section>
+    
+    <section class="py-12 bg-gray-50 dark:bg-gray-900">
+      <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="mb-8 flex flex-wrap items-center justify-between">
+          <div class="mb-4 md:mb-0">
+            <h2 class="text-2xl font-bold text-gray-900 dark:text-white">All AI Tools</h2>
+            <p class="text-gray-600 dark:text-gray-400">Showing {allTools.length} tools</p>
+          </div>
+          
+          <div class="flex flex-wrap gap-2">
+            <button class="px-4 py-2 rounded-md bg-primary-600 text-white text-sm font-medium">All</button>
+            {categories.map(category => (
+              <button class="px-4 py-2 rounded-md bg-gray-200 dark:bg-gray-800 text-gray-800 dark:text-gray-200 text-sm font-medium hover:bg-gray-300 dark:hover:bg-gray-700 transition-colors">{category}</button>
+            ))}
+          </div>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {allTools.map(tool => (
+            <AIToolCard {...tool} />
+          ))}
+        </div>
+      </div>
+    </section>
+    
+    <section class="py-16 bg-white dark:bg-gray-900">
+      <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="max-w-3xl mx-auto text-center">
+          <h2 class="text-3xl font-bold text-gray-900 dark:text-white font-display">Can't Find What You're Looking For?</h2>
+          <p class="mt-4 text-xl text-gray-600 dark:text-gray-400">Let us know what AI tools you'd like to see reviewed and compared.</p>
+          <a href="/contact" class="mt-8 inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-primary-600 hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 shadow-md transition-all duration-300">
+            Suggest a Tool
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+</Layout>
